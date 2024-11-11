@@ -1,4 +1,4 @@
-![CI Status](https://github.com/YitaoS/ids706_pyspark/actions/workflows/ci.yml/badge.svg)
+![CI Status](https://github.com/YitaoS/ids706_pyspark/actions/workflows/cicd.yml/badge.svg)
 # PySpark Data Processing Project
 
 This project demonstrates using PySpark to perform data processing tasks on a substantial dataset. The main goals include executing SQL queries on the data, performing descriptive analyses, and applying data transformations. The project uses FiveThirtyEight’s dataset of “Daily Show” guests, providing insights into the show’s guest history and enabling structured data operations.
