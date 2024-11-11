@@ -27,11 +27,12 @@ def main():
         spark,
         df,
         """
-        SELECT city, ROUND((jan + feb + mar + apr + may + jun + jul + aug + sep + oct + nov + dec) / 12, 2) AS yearly_avg 
+        SELECT city, ROUND((jan + feb + mar + apr + may + jun 
+        + jul + aug + sep + oct + nov + dec) / 12, 2) AS yearly_avg 
         FROM city_temperatures
         ORDER BY yearly_avg DESC
         """,
-        "city_temperatures"
+        "city_temperatures",
     )
     # example transform
     example_transform(df)
