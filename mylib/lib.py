@@ -4,7 +4,6 @@ library functions
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import when, col
-
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType
 
 LOG_FILE = "pyspark_output.md"
@@ -41,6 +40,7 @@ def extract(
     """Extract a url to a file path"""
     if not os.path.exists(directory):
         os.makedirs(directory)
+    # Uncomment and use the following code if requests is needed for downloading data
     # with requests.get(url) as r:
     #     with open(file_path, "wb") as f:
     #         f.write(r.content)
@@ -82,7 +82,11 @@ def query(spark, df, query, name):
     """queries using spark sql"""
     df = df.createOrReplaceTempView(name)
 
-    log_output("query data", spark.sql(query).toPandas().to_markdown(), query)
+    log_output(
+        "query data",
+        spark.sql(query).toPandas().to_markdown(),
+        query
+    )
 
     return spark.sql(query).show()
 
@@ -95,14 +99,7 @@ def describe(df):
 
 
 def example_transform(df):
-    """does an example transformation on a predefiend dataset"""
-    [
-        (col("GoogleKnowlege_Occupation") == "actor")
-        | (col("GoogleKnowlege_Occupation") == "actress"),
-        (col("GoogleKnowlege_Occupation") == "comedian")
-        | (col("GoogleKnowlege_Occupation") == "comic"),
-    ]
-
+    """does an example transformation on a predefined dataset"""
     df = df.withColumn(
         "Temperature_Category",
         when(col("avg") > 200, "High")
